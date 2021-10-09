@@ -103,12 +103,29 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
     else:
         return False
 
+def pause(window):
+    run=True
+    font1=pygame.font.Font(None, 35)
+    while run:
+        for e in pygame.event.get():
+            if e.type==pygame.KEYDOWN:
+                if e.key==pygame.K_p:
+                    run=False
+        window.blit(font1.render("PAUSE!", True, (180, 0, 0)), (300, 200))
+        pygame.display.update()    
+    
 gg=0
 a=0
 
 # Game Loop
 running = True
 while running:
+    for e in pygame.event.get():
+        if e.type==pygame.QUIT:
+            running=False
+        if e.type == pygame.KEYDOWN:
+                if e.key == pygame.K_p:
+                    pause(screen)
 
     # RGB = Red, Green, Blue
     screen.fill((0, 0, 0))
